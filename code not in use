@@ -1,0 +1,39 @@
+
+// int find_all_quarters (t_list **stack_a, t_list **stack_b, int num_quarter)
+// {
+// 	int size;	
+// 	int quarter;
+
+// 	if ((*stack_b) == NULL)
+// 		size = size_stack(*stack_a);
+// 	else
+// 	 	size = size_stack(*stack_a) + size_stack(*stack_b) ;
+// 	if (num_quarter == 1)
+// 	{
+// 		quarter = size / 4;
+// 			printf("QUARTER IS %d\n", quarter);
+
+// 		return (quarter);
+// 	}
+// 	else if (num_quarter == 2)
+// 	{
+// 		quarter = size / 2;
+// 			printf("QUARTER IS %d\n", quarter);
+
+// 		return (quarter);
+// 	}
+// 	else if (num_quarter == 3)
+// 	{
+// 		quarter = size / 2 + size / 4;
+// 		printf("QUARTER IS %d\n", quarter);
+
+// 		return (quarter);
+// 	}
+// 		else if (num_quarter == 4)
+// 	{
+// 		quarter = size;
+// 		printf("QUARTER IS %d\n", quarter);
+// 		return (quarter);
+// 	}
+// 	return 0;
+// }
