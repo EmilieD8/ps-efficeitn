@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edrouot <edrouot@student.42.fr>            +#+  +:+       +#+        */
+/*   By: emiliedrouot <emiliedrouot@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:08:07 by edrouot           #+#    #+#             */
-/*   Updated: 2023/03/23 14:19:19 by edrouot          ###   ########.fr       */
+/*   Updated: 2023/03/24 17:59:24 by emiliedrouo      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,23 @@ then next one need to be either bigger than the bottom one or the next index of 
 rotate stack and calculate cost 
 */
 
-// int	find_position(t_list **stack_b, int quarter)
-// {
-// 	t_list *tmp;
-// 	int position; 
+int	find_position(t_list **stack_b, int top, int bottom)
+{
+	t_list *tmp;
+	int position; 
 	
-// 		tmp = *stack_b;
-// 		while (tmp != NULL)
-// 		{
-// 			if (tmp->index == quarter)
-// 			{
-// 				position = tmp->position;
-// 				break;
-// 			}
-// 			tmp = tmp->next;
-// 		}
-// 	return(position);
-// }
+		tmp = *stack_b;
+		while (tmp != NULL)
+		{
+			if (tmp->index == (top - 1) || tmp->index > bottom)
+			{
+				position = tmp->position;
+				break;
+			}
+			tmp = tmp->next;
+		}
+	return(position);
+}
 
 // void	sort_quarter(t_list **stack_a, t_list **stack_b, int quarter)
 // {
@@ -127,6 +127,36 @@ rotate stack and calculate cost
 // 	}
 // }
 
+
+
+void	rotate_push(t_list **stack_a, t_list **stack_b, int position)
+{
+	int		size;
+	int		number;
+	
+	size = size_stack(*stack_b);
+	if ((size - position + 1) >= (position - 1))
+	{
+		number = size - position + 1;
+	write(1, "OO", 2);
+		while (number > 0)
+		{
+			reverse_rotate_b(stack_b);
+			number--;
+		}
+	}	
+	else
+	{
+		number = position - 1;
+		while (number > 0)
+		{
+			rotate_b(stack_b);
+			number--;
+		}
+	}
+	push_a(stack_b, stack_a);
+}
+
 void	push_chunks(t_list **stack_a, t_list **stack_b, int size)
 {
 	t_list **tmp;
@@ -167,36 +197,38 @@ void	push_chunks(t_list **stack_a, t_list **stack_b, int size)
 		rotate_b(stack_b);
 }
 
+
 void order_back (t_list **stack_a, t_list **stack_b)
 {
 	t_list **tmp;
 	t_list *head;
-	int	next_index;
-
+	int position;
+	int top;
+	int loop = 100;
+	
 	write(1, "ORDER", 5);
 	reverse_rotate_b(stack_b);
 	push_a(stack_b, stack_a); // put biggest index in the stack a 
 	tmp = stack_b;
-	head = *stack_a;
-	while (tmp != NULL)
+	while (loop > 0)
 	{
-		next_index = (head->index) - 1;
-		printf("%d\n", next_index);
-		if ((*tmp)->index == next_index)
-		{
-			push_a(stack_b, stack_a);
+		head = *stack_a;
+		top = head->index;
+		if ((get_tail(*stack_a)->index = (top - 1)) && size_stack(*stack_a) > 1)
+		{	
+			reverse_rotate_a(stack_a);
 			head = *stack_a;
-			tmp = stack_b;
 		}
-		else if ((*tmp)->index < next_index)
-		{
-			push_a(stack_b, stack_a);
+		assign_position(stack_b);
+		position = find_position(stack_b, top, (get_tail(*stack_b)->index));
+		rotate_push(stack_a, stack_a, position); // issue
+		write(1, "N", 1);
+		head = *stack_a;
+		if (head->index != head->next->index - 1)
 			rotate_a(stack_a);
-			head = *stack_a;
-			tmp = stack_b;
-		}
+		tmp = stack_b;
+		loop--;
 	}
-
 }
 
 int main(int argc, char** argv)
