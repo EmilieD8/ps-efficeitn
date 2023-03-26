@@ -55,7 +55,7 @@ void print_stack (t_list **stack)
 	{
 		while (tmp)
 		{
-			// printf("content is %d\n", tmp->content);
+			printf("content is %d\n", tmp->content);
 			printf("index is %d\n", tmp->index); // to be removed
 			// printf("position is %d\n", tmp->position); // to be removed
 			tmp = tmp->next;

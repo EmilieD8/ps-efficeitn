@@ -1,39 +1,99 @@
 
-// int find_all_quarters (t_list **stack_a, t_list **stack_b, int num_quarter)
+
+
+/* first, push to b the 10th and 90th percentile : if 10th percentile, push and rotate, if 90th, just push
+then rotate the stack to have the 90th percentile on top
+push the biggest number 
+push the next one : on top if the next index, in the bottom (pa ra) if not
+then next one need to be either bigger than the bottom one or the next index of the top one 
+rotate stack and calculate cost 
+*/
+
+
+// void	sort_quarter(t_list **stack_a, t_list **stack_b, int quarter)
 // {
-// 	int size;	
-// 	int quarter;
+// 	int		size;
+// 	int 	position;
+// 	int		number;
 
-// 	if ((*stack_b) == NULL)
-// 		size = size_stack(*stack_a);
-// 	else
-// 	 	size = size_stack(*stack_a) + size_stack(*stack_b) ;
-// 	if (num_quarter == 1)
+// 	while (size_stack(*stack_b) > 0)
 // 	{
-// 		quarter = size / 4;
-// 			printf("QUARTER IS %d\n", quarter);
+// 		size = size_stack(*stack_b);
+// 		if (is_sorted_reverse(stack_b) == 1)
+// 		{	
+// 			while (size_stack(*stack_b) > 0)
+// 					push_a(stack_b, stack_a);
+// 			break;
+// 		}
+// 		assign_position(stack_b);
+// 		position = find_position(stack_b, quarter);
+// 		if ((size - position + 1) >= (position - 1))
+// 		{
+// 			number = size - position + 1;
+// 			while (number > 0)
+// 			{
+// 				reverse_rotate_b(stack_b);
+// 				number--;
+// 			}
+// 		}	
+// 		else
+// 		{
+// 			number = position - 1;
+// 			while (number > 0)
+// 			{
+// 				rotate_b(stack_b);
+// 				number--;
+// 			}
+// 		}
+// 		push_a(stack_b, stack_a);
+// 		quarter--;	
+// 	}
+// 	size--;
+// }
 
-// 		return (quarter);
-// 	}
-// 	else if (num_quarter == 2)
-// 	{
-// 		quarter = size / 2;
-// 			printf("QUARTER IS %d\n", quarter);
+// void push_sort_pushback(t_list **stack_a, t_list **stack_b, int size)
+// {
+// 	double num_quarters;
+// 	int quarter_up;
+// 	int quarter_down;
+// 	int quarter_cpy;
 
-// 		return (quarter);
-// 	}
-// 	else if (num_quarter == 3)
+// 	num_quarters = 0.25;
+// 	quarter_down = 0;
+// 	while (num_quarters <= 1)
 // 	{
-// 		quarter = size / 2 + size / 4;
-// 		printf("QUARTER IS %d\n", quarter);
+// 		quarter_up = size * num_quarters;
+// 		push_quarters(stack_a, stack_b, quarter_down, quarter_up);
+// 		while (get_tail(*stack_a)->index != quarter_down && quarter_down != 0)
+// 			rotate_a(stack_a);
+// 		sort_quarter(stack_a, stack_b, quarter_up);
+// 		quarter_cpy = quarter_up - quarter_down;
+// 		while (quarter_cpy > 0)
+// 		{
+// 			rotate_a(stack_a);
+// 			quarter_cpy--;
+// 		}
+// 		num_quarters = num_quarters + 0.25;
+// 		quarter_down = quarter_up;
+// 	}
+// 	rotate_a(stack_a);
+// }
 
-// 		return (quarter);
-// 	}
-// 		else if (num_quarter == 4)
+// void	push_quarters(t_list **stack_a, t_list **stack_b, int quarter_down, int quarter_up)
+// {
+// 	t_list **tmp;
+// 	tmp = stack_a;
+// 	int loop;
+// 	loop = quarter_up - quarter_down;
+// 	while (loop > 0)
 // 	{
-// 		quarter = size;
-// 		printf("QUARTER IS %d\n", quarter);
-// 		return (quarter);
+// 		if ((*tmp)->index <= quarter_up && (*tmp)->index > quarter_down)
+// 		{
+// 			push_b(stack_a, stack_b);
+// 			tmp = stack_a;
+// 			loop--;
+// 		}
+// 		else
+// 			rotate_a(stack_a);
 // 	}
-// 	return 0;
 // }
