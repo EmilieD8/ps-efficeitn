@@ -12,9 +12,9 @@
 
 #include "push_swap.h"
 
-static void push (t_list **stack_one, t_list **stack_two) // copy from stack one to stack two
+static void	push(t_list **stack_one, t_list **stack_two)
 {
-	t_list *new;
+	t_list	*new;
 
 	if (size_stack(*stack_one) == 0)
 		return ;
@@ -24,14 +24,14 @@ static void push (t_list **stack_one, t_list **stack_two) // copy from stack one
 	*stack_one = new;
 }
 
-void push_a (t_list **stack_b, t_list **stack_a)
+void	push_a(t_list **stack_b, t_list **stack_a)
 {
 	push(stack_b, stack_a);
 	write(1, "pa", 2);
 	write(1, "\n", 1);
 }
 
-void push_b (t_list **stack_a, t_list **stack_b)
+void	push_b(t_list **stack_a, t_list **stack_b)
 {
 	push(stack_a, stack_b);
 	write(1, "pb", 2);

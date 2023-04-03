@@ -12,37 +12,35 @@
 
 #include "push_swap.h"
 
-static void rotate_down (t_list **stack) // needs to be changed 
+static void	rotate_down(t_list **stack)
 {
+	t_list	*temp;
+	t_list	*tail;
+
 	if (size_stack(*stack) == 1 || size_stack(*stack) == 0)
 		return ;
-
-	t_list *temp;
-	t_list *tail;
-
 	temp = *stack;
 	*stack = (*stack)->next;
 	tail = get_tail(*stack);
 	temp->next = NULL;
 	tail->next = temp;
-
 }
 
-void rotate_a (t_list **stack_a)
+void	rotate_a(t_list **stack_a)
 {
 	rotate_down(stack_a);
 	write(1, "ra", 2);
 	write(1, "\n", 1);
 }
 
-void rotate_b (t_list **stack_b)
+void	rotate_b(t_list **stack_b)
 {
 	rotate_down(stack_b);
 	write(1, "rb", 2);
 	write(1, "\n", 1);
 }
 
-void rotate_rr (t_list **stack_a, t_list **stack_b)
+void	rotate_rr(t_list **stack_a, t_list **stack_b)
 {
 	rotate_down(stack_a);
 	rotate_down(stack_b);

@@ -1,32 +1,38 @@
-CC		= gcc
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: edrouot <marvin@42.fr>                     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/04/03 12:14:56 by edrouot           #+#    #+#              #
+#    Updated: 2023/04/03 12:14:58 by edrouot          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+CC	= cc
 CFLAGS	= -Wall -Werror -Wextra
 NAME	= push_swap
-
-SRC_PATH = src/
-OBJ_PATH = obj/
-
-SRC		= assign_index.c \
-		create_stack.c \
-		ft_atoi.c \
-		push_swap.c \
-		push.c \
-		reverse_rotate.c \
-		rotate.c \
-		sort_small.c \
-		stack_utils_bis.c \
-		stack_utils.c \
-		swap.c
+SRCS	= assign_index.c \
+	create_stack.c \
+	Input.c \
+	push_swap.c \
+	push.c \
+	reverse_rotate.c \
+	rotate.c \
+	sort_small.c \
+	sort_big.c \
+	swap.c \
+	stack_utils.c \
+	stack_utils_bis.c
 		
-SRCS	= $(addprefix $(SRC_PATH), $(SRC))
-OBJ		= $(SRC:.c=.o)
-OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
-INCS	= -I ./includes/
+$(NAME) : $(SCRS)
+	$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 
-all:
-	cc -o push_swap $(SRC) 
-
+all: $(NAME)
+	
 clean:
-	rm -rf $(OBJ_PATH)
+	rm -rf $(NAME)
 
 fclean: clean
 	rm -f $(NAME)

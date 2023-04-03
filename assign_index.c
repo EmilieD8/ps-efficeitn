@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assign_index.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edrouot <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edrouot <edrouot@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 15:07:15 by edrouot           #+#    #+#             */
-/*   Updated: 2023/03/18 15:07:16 by edrouot          ###   ########.fr       */
+/*   Updated: 2023/04/03 12:53:52 by edrouot          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	assign_highest_index(t_list **stack, int i, int index)
 	}
 }
 
-int	next_highest(t_list **stack, int index)
+int	next_highest(t_list **stack)
 {
 	t_list	*tmp;
 	int		i;
@@ -65,7 +65,7 @@ void	assign_index(t_list **stack)
 	assign_base_index(stack);
 	while (index > 0)
 	{
-		i = next_highest(stack, index);
+		i = next_highest(stack);
 		assign_highest_index(stack, i, index);
 		index--;
 	}
